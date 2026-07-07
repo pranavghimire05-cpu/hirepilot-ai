@@ -10,7 +10,17 @@ structured_llm = llm.with_structured_output(Resume)
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", SYSTEM_PROMPT),
-        ("human", {Resume})
+        ("human",
+
+            """
+
+            Extract the structured information from the following resume.
+
+            Resume:
+
+            {resume}
+
+            """)
 
     ]
 )

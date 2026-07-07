@@ -8,7 +8,7 @@ MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
 
 def get_llm():
     llm=ChatMistralAI(
-        model_name="mistral-medium-latest",
+        model_name="mistral-large-latest",
         temperature=0,
         api_key=MISTRAL_API_KEY
     )

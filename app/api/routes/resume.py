@@ -1,5 +1,6 @@
 from fastapi import APIRouter, File, UploadFile, HTTPException
 from app.services.pdf_services import extract_text_from_pdf
+from app.chains.resume_parser import parse_resume
 
 router  = APIRouter(
     prefix="/resume",
@@ -10,15 +11,22 @@ router  = APIRouter(
 def health():
     return {"message" : "healthy"}
 
-@router.post("/upload")
-async def upload_resume(file : UploadFile = File(...)):
-    if file.content_type != "application/pdf":
-        raise HTTPException(
-            status_code=404,
-            detail="Invalid file type"
-        )
-    result = extract_text_from_pdf(file=file)
+@router.post("/parse-resume")
+
+async def parse_resume_endpoint(
+
+    file: UploadFile = File(...)
+
+):
+
+    pdf_data = extract_text_from_pdf(file)
+
+    structured_resume = parse_resume(pdf_data["text"])
+
     return {
-        "file_name": file.filename,
-        **result
+
+        "pages": pdf_data["pages"],
+
+        "resume": structured_resume.model_dump()
+
     }
