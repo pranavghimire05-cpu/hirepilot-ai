@@ -1,6 +1,8 @@
-def main():
-    print("Hello from hirepilot-ai!")
+a = "*"
+for i in range(5):
+    result = a 
+    a=a+"*"
+    print (result)
 
 
-if __name__ == "__main__":
-    main()
+
