@@ -80,7 +80,7 @@ def delete_resume(resume_id: str):
 
         where={"resume_id": resume_id}
 
-    )
+    ) 
 
     ids = docs["ids"]
 
