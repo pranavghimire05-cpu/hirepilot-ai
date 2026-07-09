@@ -32,3 +32,24 @@ def parse_resume(text: str):
             "resume": text
         }
     )
+
+def resume_to_text(resume: Resume) -> str:
+    return f"""
+    Name:
+    {resume.name}
+
+    Email:
+    {resume.email}
+
+    Skills:
+    {chr(10).join(resume.skills)}
+
+    Education:
+    {chr(10).join(resume.education)}
+
+    Experience:
+    {chr(10).join(resume.experience)}
+
+    Projects:
+    {chr(10).join(resume.projects)}
+    """
