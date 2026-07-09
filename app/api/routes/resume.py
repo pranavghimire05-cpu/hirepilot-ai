@@ -23,7 +23,7 @@ async def upload_resume(file: UploadFile = File(...)):
         pdf_byte = extract_text_from_pdf(file=file)
 
         resume = parse_resume(text=pdf_byte)
-
+        
         resume_text = resume_to_text(resume)
 
 
